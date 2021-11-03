@@ -5,6 +5,26 @@
   </section>
 </template>
 
+<script>
+import { mapGetters } from 'vuex';
+
+export default {
+  name: 'ShopAdmin',
+  computed: {
+    ...mapGetters(['isAuthenticated'])
+  },
+  watch: {
+    isAuthenticated() {
+      if (!this.isAuthenticated) {
+        this.$router.push({
+          name: 'ProductsList'
+        })
+      }
+    }
+  },
+}
+</script>
+
 <style scoped>
 section {
   text-align: center;

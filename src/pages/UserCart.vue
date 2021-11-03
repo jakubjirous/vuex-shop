@@ -9,7 +9,7 @@
     </h3>
     <ul>
       <cart-item
-        v-for="item in cart.items"
+        v-for="item in cartItems"
         :key="item.productId"
         :image="item.image"
         :price="item.price"
@@ -28,10 +28,12 @@ export default {
   components: {
     CartItem,
   },
-  inject: ['cart'],
   computed: {
+    cartItems() {
+      return this.$store.getters['cart/products'];
+    },
     cartTotal() {
-      return this.cart.total.toFixed(2);
+      return this.$store.getters['cart/totalSum'].toFixed(2);
     }
   }
 };
